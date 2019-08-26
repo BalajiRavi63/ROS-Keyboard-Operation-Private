@@ -1,0 +1,28 @@
+1) cd ~/catkin_ws/src
+2) git clone https://github.com/ros-teleop/teleop_twist_keyboard
+3) cd ~/catkin_ws
+
+4) catkin_make
+
+
+5) source ~/catkin_ws/devel/setup.bash
+
+6) source ~/.bashrc
+
+gedit ~/.bashr
+And check if the following line is present
+
+ source ~/catkin_ws/devel/setup.bash
+
+https://answers.ros.org/question/199363/error-run-teleop_twist_keyboard-package/
+
+Arduino File Location
+
+Home/arduino-ROS-Twist_Keybord
+
+If these Does not work sudo apt-get install ros-kinetic-teleop-twist-keyboard
+
+
+
+
+

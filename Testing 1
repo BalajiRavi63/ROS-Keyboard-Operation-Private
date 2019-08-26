@@ -1,0 +1,134 @@
+export ROS_HOSTNAME=localhost
+export ROS_MASTER_URI=http://localhost:11311
+
+https://husarion.com/tutorials/ros-tutorials/8-unknown-environment-exploration/
+
+Effective-Robotics-Programming-with-ROS
+
+
+Process 1
+
+
+roslaunch freenect_launch freenect.launch depth_registration:=true
+
+rosrun rviz rviz
+
+(Seprate Terminals)
+
+Global Options > Fixed Frame to camera_link
+
+In rviz add a new PointCloud2. Set its topic to /camera/depth_registered/points .
+
+Process 2
+
+Start up the Kinect ROS nodes 
+
+roslaunch freenect_launch freenect.launch depth_registration:=true
+
+roslaunch rtabmap_ros rgbd_mapping.launch rtabmap_args:="--delete_db_on_start" rviz:=true rtabmapviz:=false
+
+roslaunch rtabmap_ros rgbd_mapping.launch rtabmap_args:="--delete_db_on_start"
+
+JOYSTICK INTERGATION
+
+rosstack profile & rospack profile
+
+ls /dev/input/
+
+
+sudo jstest /dev/input/js0     (js0 joystick callibration allocation index )
+
+
+SIMULATION
+
+rosrun turtlesim turtlesim_node
+
+rosrun turtlesim turtle_teleop_key
+
+
+
+
+rosrun rqt_graph rqt_graph
+
+rostopic hz /turtle1/pose
+rosrun rqt_plot rqt_plot
+
+
+
+
+URDF 3D Robot model Visualization code
+
+NAvigate to the folder ( Package in Catkin_ws)
+Note the name
+
+roslaunch urdf_tutorial display.launch model:='$(find urdf_tutorial)/urdf/06-flexible.urdf'
+
+roslaunch urdf_tutorial display.launch model:='$(find <package-name>)/urdf/myurdf.urdf'
+ 
+
+MOTOR TESTING
+
+Home/Arduino-ROS-Twist-Keyboard/TwistTeleop/.ino
+
+
+UPLOAD THE CODE TO ARDUINO
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+# teleop_twist_keyboard
+Generic Keyboard Teleop for ROS
+
+
+Upload Code To arduino
+
+	roscore
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+
+rostopic pub /cmd_right_wheel std_msgs/Int16 "data: 190"
+
+rostopic pub /cmd_left_wheel std_msgs/Int16 "data: 190"
+
+
+
+
+# Launch
+Run.
+```
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+
+With custom values.
+```
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py _speed:=0.9 _turn:=0.8
+```
+
+Publishing to a different topic (in this case `my_cmd_vel`).
+```
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=my_cmd_vel
+```
+
+# Usage
+```
+Reading from the keyboard  and Publishing to Twist!
+---------------------------
+Moving around:
+   u    i    o
+   j    k    l
+   m    ,    .
+
+For Holonomic mode (strafing), hold down the shift key:
+---------------------------
+   U    I    O
+   J    K    L
+   M    <    >
+
+t : up (+z)
+b : down (-z)
+
+anything else : stop
+
+q/z : increase/decrease max speeds by 10%
+w/x : increase/decrease only linear speed by 10%
+e/c : increase/decrease only angular speed by 10%
+
+CTRL-C to quit
+```
+

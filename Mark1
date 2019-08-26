@@ -1,0 +1,57 @@
+export ROS_HOSTNAME=localhost
+export ROS_MASTER_URI=http://localhost:11311
+
+https://husarion.com/tutorials/ros-tutorials/8-unknown-environment-exploration/
+
+Effective-Robotics-Programming-with-ROS
+
+
+Process 1
+
+
+roslaunch freenect_launch freenect.launch depth_registration:=true
+
+rosrun rviz rviz
+
+(Seprate Terminals)
+
+Global Options > Fixed Frame to camera_link
+
+In rviz add a new PointCloud2. Set its topic to /camera/depth_registered/points .
+
+Process 2
+
+Start up the Kinect ROS nodes 
+
+roslaunch freenect_launch freenect.launch depth_registration:=true
+
+roslaunch rtabmap_ros rgbd_mapping.launch rtabmap_args:="--delete_db_on_start" rviz:=true rtabmapviz:=false
+
+roslaunch rtabmap_ros rgbd_mapping.launch rtabmap_args:="--delete_db_on_start"
+
+JOYSTICK INTERGATION
+
+rosstack profile & rospack profile
+
+ls /dev/input/
+
+
+sudo jstest /dev/input/js0     (js0 joystick callibration allocation index )
+
+
+SIMULATION
+
+rosrun turtlesim turtlesim_node
+
+rosrun turtlesim turtle_teleop_key
+
+
+
+
+rosrun rqt_graph rqt_graph
+
+rostopic hz /turtle1/pose
+rosrun rqt_plot rqt_plot
+
+
+

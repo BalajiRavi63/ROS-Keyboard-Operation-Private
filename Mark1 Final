@@ -1,0 +1,9 @@
+Upload Code To arduino
+
+	roscore
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+
+rostopic pub /cmd_right_wheel std_msgs/Int16 "data: 190"
+
+rostopic pub /cmd_left_wheel std_msgs/Int16 "data: 190"
+
